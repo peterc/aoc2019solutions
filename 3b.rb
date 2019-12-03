@@ -75,12 +75,22 @@ colors = [
   ChunkyPNG::Color.rgba(255, 255, 0, 128)
 ]
 
+max_x = vs.keys.max_by { |(x, y)| x }[0]
+max_y = vs.keys.max_by { |(x, y)| y }[1]
+min_x = vs.keys.min_by { |(x, y)| x }[0]
+min_y = vs.keys.min_by { |(x, y)| y }[1]
+
+rx = max_x - min_x
+ry = max_y - min_y
+
 # Plot visualization
 vs.each do |k, v|
   0.upto(5) do |i|
     w = v[:w][i]
-    if w > 0 && k[0] < 500 && k[0] >= -500 && k[1] < 500 && k[1] >= -500
-      png[k[0] + 500, k[1] + 500] = colors[i]
+    if w > 0 #&& k[0] < 500 && k[0] >= -500 && k[1] < 500 && k[1] >= -500
+      x = ((k[0] / rx.to_f) * 499 + 500).floor
+      y = ((k[1] / ry.to_f) * 499 + 500).floor
+      png[x, y] = colors[i]
     end
   end
 end
