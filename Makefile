@@ -11,3 +11,6 @@ CC=cc
 
 2a:
 	$(CC) 2a.c -o scratch/2a
+
+2b:
+	$(CC) 2b.c -o scratch/2b
