@@ -9,23 +9,39 @@ int mem[ARRAY_SIZE(program)] = {};
 int main() {
   int i = 0, op, i1, i2, out;
 
-  // Take a copy of the program and place it into 'mem'ory..
-  memcpy(mem, program, sizeof(program));
+  for (int noun = 0; noun < 100; noun++) {
+    for (int verb = 0; verb < 100; verb++) {
+      // Take a copy of the program and place it into 'mem'ory..
+      memcpy(mem, program, sizeof(program));
 
-  while(1) {
-    op = mem[i], i1 = mem[i+1], i2 = mem[i+2], out = mem[i+3];
+      mem[1] = noun;
+      mem[2] = verb;
 
-    if (op == 1) {
-      mem[out] = mem[i1] + mem[i2];
-    } else if (op == 2) {
-      mem[out] = mem[i1] * mem[i2];
-    } else {
-      break;
+      printf("RUN %d %d %d\n", mem[0], mem[1], mem[2]);
+
+      i = 0;
+
+      while(1) {
+        op = mem[i], i1 = mem[i+1], i2 = mem[i+2], out = mem[i+3];
+
+        printf("RUNNING %d %d %d %d\n", op, i1, i2, out);
+
+        if (op == 1) {
+          mem[out] = mem[i1] + mem[i2];
+        } else if (op == 2) {
+          mem[out] = mem[i1] * mem[i2];
+        } else {
+          break;
+        }
+        i += 4;
+      }
+
+      if (mem[0] == 19690720) {
+        printf("ENDED RUN (%d,%d) WITH %d\n", noun, verb, mem[0]);
+        return 0;
+      }
     }
-    i += 4;
   }
 
-  printf("%d\n", mem[0]);
-
-  return 0;
+  return 1;
 }
