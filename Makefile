@@ -5,3 +5,6 @@ CC=cc
 
 1b:
 	$(CC) 1b.c -o scratch/1b
+
+1b-file:
+	$(CC) 1b-file.c -o scratch/1b
