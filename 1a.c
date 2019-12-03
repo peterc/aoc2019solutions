@@ -1,6 +1,3 @@
-# cc 1a.c -o scratch/1a
-# ./1a
-
 #include <stdio.h>
 #include <math.h>
 
