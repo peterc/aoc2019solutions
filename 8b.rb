@@ -1,10 +1,8 @@
 puts File.read('8.sif')
       .chars
-      .each_slice(25 * 6)
+      .each_slice(25 * 6)      
       .inject { |a, b| 
-        a.map.with_index { |pixel, idx|
-          pixel == '2' ? b[idx] : pixel
-        }
+        a.zip(b).map { |a, b| a == '2' ? b : a }
       }
-      .map { |c| c == '1' ? 'X' : ' ' }
+      .map { |c| %w{` #}[c.to_i] }
       .each_slice(25).map(&:join).join("\n")
