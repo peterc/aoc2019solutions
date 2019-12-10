@@ -25,6 +25,8 @@ asteroids.each do |(bx, by)|
   dy = ydiff / xdiff.gcd(ydiff)
   visible = true
 
+  # Create a "pseudo" angle of sorts.. to be honest
+  # I ran out of time and can surely optimize this but it works
   angle = (1 - (1.0 - (bx-ax).to_f/((bx-ax).abs+(ay-by).abs)) * ((ay-by) <=> 0)) % 4
 
   # Check spots in between
