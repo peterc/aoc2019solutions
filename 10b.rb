@@ -1,3 +1,5 @@
+# NO TRIGONOMETRY SOLUTION!
+
 # Load the map
 chart = File.readlines(ARGV.first || 'map1').map(&:chomp).map(&:chars)
 
