@@ -144,27 +144,24 @@ loop do
 
   break if i == :halt
   if i == :waiting
+    Curses.clear
     screen.map.with_index { |row, y| row.map.with_index { |col, x|
       str = case col
       when 1
-        "|"
+        "\u2588"
       when 2
-        "O"
+        "\u2591"
       when 3
-        "-"
+        "\u2501"
       when 4
         "." 
-      else
-        ' '
       end
 
-      Curses.setpos(y, x)
-      Curses.addstr(str)
-    }.join('') }.join("\n")
-    #input = Timeout::timeout(1) { Curses.getch } rescue 's'
-    #input = -1 if input == "a" 
-    #input = 0 if input == "s"
-    #input = 1 if input == "d"
+      if str
+        Curses.setpos(y, x)
+        Curses.addstr(str)
+      end
+    }}
 
     if bat_x > ball_x
       input = -1
