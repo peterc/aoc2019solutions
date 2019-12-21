@@ -9,11 +9,29 @@ vm = VM.new(mem)
 # J = is either of the above conditions true? (so J = true if there's a hole at 1 or 3 blocks away)
 # J = is there a ground block four blocks away AND a hole either 1 or 3 blocks away?
 
-instructions = "NOT A T
+instructions_part1 = "NOT A T
 NOT C J
 OR T J
 AND D J
 WALK
+".chars.to_enum
+
+# J if B has floor
+# J if B and C have floor
+# J if B and C do NOT have floor (so an immediate 2 wide gap means jump)
+# J if B and C do NOT have floor but D *does*
+# J if B and C do NOT have floor but D and H *do*
+# T = true if A is a hole
+# if A is a hole OR (if B and C do NOT have floor but D and H *do*) .. then jump!
+
+instructions = "OR B J
+AND C J
+NOT J J
+AND D J
+AND H J
+NOT A T
+OR T J
+RUN
 ".chars.to_enum
 input = nil
 
